@@ -10,7 +10,7 @@ int main(int argc, char **argv){
   
   ros::NodeHandle n;
   ros::Publisher cmdVelPub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1);
- 
+  
   ros::Rate loopRate(2);
 
   ROS_INFO("circle cpp start...");//輸出顯示信息
@@ -25,6 +25,7 @@ int main(int argc, char **argv){
         while (ros::ok()){
            
             geometry_msgs::Twist speed;
+         
 
             if(c=='s'){             //square
             std::cout<<"square\n";
@@ -51,6 +52,8 @@ int main(int argc, char **argv){
                 std::cin>>c;
             }
             cmdVelPub.publish(speed); 
+           
+
             ros::spinOnce();
             loopRate.sleep();   
         }
